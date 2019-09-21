@@ -110,8 +110,8 @@
         id: null, /* 在页面中的唯一id，如果为null则自动生成随机id,一个id只会显示一个 */
         top: "200px", /* 窗口离顶部的距离,可以是百分比或像素(如 '100px')  0标识居中显示 */
         opacity: 0.5, /* 窗口隔离层的透明度,如果设置为0,则不显示隔离层 */
-        showType: 'fade', /* 窗口显示的类型,可选值有:show、fade、slide、fly */
-        showSpeed: 1000, /* 窗口显示的速度,可选值有:'slow'、'fast'、表示毫秒的整数 */
+        //showType: 'fade', /* 窗口显示的类型,可选值有:show、fade、slide、fly */
+        //showSpeed: 1000, /* 窗口显示的速度,可选值有:'slow'、'fast'、表示毫秒的整数 */
         showClose: true, /* 是否显示窗口右上角的关闭按钮 */
         draggable: false, /* 是否可以拖动窗口 */
         data: {
@@ -229,7 +229,7 @@
                 //输出按钮
                 $.each(ps.buttons, function () {
                     var $this = $(this);
-                    var $btn = $("<button type='button' class='preview-btn " + $this.attr("className") + "' style='" + $this.attr("style") + "'><span>" + $this.attr("text") + "</span></button>").appendTo($preview_window.find(".lr .con .btns"));
+                    var $btn = $("<button type='button' class='preview-btn " + printText($this.attr("className")) + "' style='" + printText($this.attr("style")) + "'><span>" + printText($this.attr("text")) + "</span></button>").appendTo($preview_window.find(".lr .con .btns"));
 
                     if (typeof ($this.attr("initFunc")) == 'function') {
                         $this.attr("initFunc")($btn);
@@ -360,6 +360,13 @@
                 $preview_window.find(".lr .con .btns").empty();
                 $preview_window.find(".preview-modal-close").hide().unbind("click");
                 $preview_window_modal.find(".maskingLayer_iframe").empty();
+            }
+
+            function printText(text) {
+                if (text != undefined) {
+                    return text;
+                }
+                return "";
             }
         }
 
