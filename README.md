@@ -53,29 +53,9 @@ $.preview({
                 if (self) {
                     self.attr("id", randomWord(true,5,8)); //设置名称
                     self.attr("data-clipboard-text", "hello preview!");
-
-                    parallelLoadScripts([{ "name": "clipboard", "url": "https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.js" }], function () {
-                        var clipboard = new ClipboardJS("#" + self.attr("id"), { //先实例化
-                            // 点击copy按钮，直接通过text直接返回复印的内容
-                            text: function () {
-                                sleep(300);
-                                return self.attr("data-clipboard-text");
-
-                            }
-                        });
-
-                        clipboard.on('success', function (e) {
-                            alert('复制成功');　　//复制成功区间
-                        });
-
-                        clipboard.on('error', function (e) {
-
-                        });
-                    });
                 }
             },
             clickFunc: function (self, data) { //点击事件
-
                 if (data.url && self) {
                     self.attr("data-clipboard-text", data.url);
                 }
@@ -136,7 +116,7 @@ data示例说明
 |  initFunc | 按钮追加到Dom树后，会触发 initFunc 函数，函数参数为 按钮Jquery对象，可通过函数修改按钮属性性/注册事件等系列操作。 |  Function |   function (self) {}     |
 |  clickFunc | 按钮被点击后，会触发clickFunc 函数，该函数参数为 按钮Jquery对象和当前预览的<a href="#data-explain">data对象</a>，可在该函数中定义按钮点后需要的操作 |  Function |   function (self,data) {}     |
 
-按钮参数示例
+按钮参数示例，模拟复制链接到粘贴板按钮
 ```javascript
 {
             text: "复制链接",
@@ -176,4 +156,8 @@ data示例说明
             }
 ```
 
+效果截图
+
+![](http://doc.deiyou.net/server/../Public/Uploads/2019-09-21/5d86307418cb7.png)
+![](http://doc.deiyou.net/server/../Public/Uploads/2019-09-21/5d8631261a8de.png)
 
